@@ -51,7 +51,7 @@ const Services = () => {
         setServices(services.map((service) => (service._id === response.data._id ? response.data : service)));
         toast.success('Service updated successfully!');
       } else {
-        const response = await axios.post(`${base_URL}/api/services`, formData, {
+        const response = await axios.post(`${base_URL}/api/services/insert`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
