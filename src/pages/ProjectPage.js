@@ -11,7 +11,7 @@ const Projects = () => {
   const [projectImage, setProjectImage] = useState(null);
   const [projects, setProjects] = useState([]);
   const [editingProject, setEditingProject] = useState(null);
-  const base_URL = 'https://architecture-backend-five.vercel.app';
+  const base_URL = 'https://architecture-server.vercel.app';
 
   // Fetch projects
   useEffect(() => {
@@ -40,6 +40,9 @@ const Projects = () => {
     if (projectImage) {
       formData.append('image', projectImage);
     }
+
+    console.log('Form Data:', formData);
+
 
     try {
       if (editingProject) {

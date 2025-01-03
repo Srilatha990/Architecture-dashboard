@@ -19,7 +19,7 @@ const Dashboard = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
 
-  const base_URL = 'https://architecture-backend-five.vercel.app';
+  const base_URL = 'https://architecture-server.vercel.app';
 
   // Fetch data based on the active tab
   const fetchData = async () => {

@@ -9,7 +9,7 @@ const FAQs = () => {
   const [answer, setAnswer] = useState('');
   const [faqs, setFaqs] = useState([]);
   const [editingFAQ, setEditingFAQ] = useState(null);
-  const base_URL = 'https://architecture-backend-five.vercel.app';
+  const base_URL = 'https://architecture-server.vercel.app';
 
   // Fetch FAQs
   useEffect(() => {

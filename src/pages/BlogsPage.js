@@ -14,7 +14,7 @@ const Blogs = () => {
   const [blogAuthor, setBlogAuthor] = useState('');
   const [blogs, setBlogs] = useState([]);
   const [editingBlog, setEditingBlog] = useState(null);
-  const base_URL = 'https://architecture-backend-five.vercel.app';
+  const base_URL = 'https://architecture-server.vercel.app';
 
   // Fetch blogs
   useEffect(() => {

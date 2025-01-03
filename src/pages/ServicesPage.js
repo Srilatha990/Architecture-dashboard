@@ -11,7 +11,7 @@ const Services = () => {
   const [services, setServices] = useState([]);
   const [editingService, setEditingService] = useState(null);
   const [serviceDescriptionLength, setServiceDescriptionLength] = useState(0);
-  const base_URL = 'https://architecture-backend-five.vercel.app';
+  const base_URL = 'https://architecture-server.vercel.app';
 
   // Fetch services
   useEffect(() => {
@@ -27,20 +27,22 @@ const Services = () => {
     fetchServices();
   }, []);
 
-  // Handle form submission
   const handleServiceSubmit = async () => {
     if (!serviceTitle.trim() || !serviceDescription.trim()) {
       toast.error('All fields are required.');
       return;
     }
-
+  
     const formData = new FormData();
-    formData.append('title', serviceTitle); // Changed 'name' to 'title'
+    formData.append('title', serviceTitle);
     formData.append('description', serviceDescription);
     if (serviceImage) {
       formData.append('image', serviceImage);
     }
-
+  
+    // Log the FormData to check what is being sent
+    console.log('Form Data:', formData);
+  
     try {
       if (editingService) {
         const response = await axios.put(`${base_URL}/api/services/${editingService._id}`, formData, {
@@ -48,6 +50,7 @@ const Services = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
+        console.log('Service updated response:', response.data); // Logs the response from the backend
         setServices(services.map((service) => (service._id === response.data._id ? response.data : service)));
         toast.success('Service updated successfully!');
       } else {
@@ -56,17 +59,20 @@ const Services = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
+        console.log('Service added response:', response.data); // Logs the response from the backend
         setServices([...services, response.data]);
         toast.success('Service added successfully!');
       }
-      setServiceTitle(''); // Reset to empty after submission
+      setServiceTitle('');
       setServiceDescription('');
       setServiceImage(null);
       setEditingService(null);
     } catch (error) {
+      console.error('Error adding/updating service:', error); // Logs the error in case of failure
       toast.error('Error adding/updating service');
     }
   };
+  
 
   // Confirm delete service
   const confirmDeleteService = (service) => {
